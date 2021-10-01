@@ -3,6 +3,11 @@ package com.mesteban.aad_playground.ut_01
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import java.io.File
+import kotlin.io.path.Path
+import kotlin.io.path.createDirectory
+import kotlin.io.path.deleteIfExists
+import kotlin.io.path.exists
+
 
 /**
  * constructor por defecto->()
@@ -23,6 +28,7 @@ class FilePlayGround(private val activity: AppCompatActivity) {
         //pendTextWithNewLine()
         //readLineByLine()
         //deleteFile()
+        createFolder()
 
     }
 
@@ -128,7 +134,26 @@ class FilePlayGround(private val activity: AppCompatActivity) {
             mutableListOf()
         }
 
+
+    /**
+     * Funcion para crear carpetas
+     */
+
+    fun createFolder(){
+        //Opcion 1
+        val file = File(activity.filesDir, "/docs")
+        file.mkdir()
     }
+
+    fun createFileInFolder(){
+        val file = File(activity.filesDir.canonicalPath, "/documents")
+        file.writeText("Hola!")
+        //file.createNewFile()
+    }
+
+
+
+}
 
 
 
