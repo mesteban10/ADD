@@ -1,4 +1,6 @@
-package com.mestabn.aad_playground.ut02
+package com.mestabn.aad_playground.ut02.repository
+
+import com.mestabn.aad_playground.ut02.UserModel
 
 /**
  * Ejercicio para ver y practicar el patrón repositorio con dos fuentes de datos:

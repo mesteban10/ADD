@@ -1,10 +1,12 @@
-package com.mestabn.aad_playground.ut02
+package com.mestabn.aad_playground.ut02.repository
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mestabn.aad_playground.R
+import com.mestabn.aad_playground.ut02.Model
+import com.mestabn.aad_playground.ut02.UserModel
 
 
 /**
