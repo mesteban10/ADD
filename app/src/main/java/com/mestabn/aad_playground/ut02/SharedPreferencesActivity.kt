@@ -14,6 +14,7 @@ class SharedPreferencesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_shared_preferences)
         saveAsyncSharedpref()
         saveAsyncEncryptSharedpref()
+        saveAndFetchUsers()
     }
 
     private fun saveAsyncSharedpref() {
@@ -30,5 +31,23 @@ class SharedPreferencesActivity : AppCompatActivity() {
         Log.d(TAG, data!!)
     }
 
+    private fun saveAndFetchUsers() {
+        val userRepository =
+            UserRepository(MemDataSource(), SharPrefDataSource(this))
+
+        val userModel1 = UserModel(1, "User1", "Surname1")
+        val userModel2 = UserModel(2, "User2", "Surname2")
+        val userModel3 = UserModel(3, "User3", "Surname3")
+
+        //Guardo los usuarios ¿Dónde? en esta clase no se preocupa de eso, no tiene esa responsabilidad.
+        userRepository.saveUsers(mutableListOf(userModel1, userModel2, userModel3))
+
+        //Obtengo todos los resultados. ¿Desde donde?. No es responsabilidad de esta clase.
+        val users = userRepository.fetchAllUsers()
+
+        //Busco un usuario. ¿Cómo lo he hecho? No es responsabilidad de la vista.
+        val user = userRepository.fetchUser(1)
+
+    }
 
 }
