@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.mestabn.aad_playground.ut_01.DataStorageType
 import com.mesteban.aad_playground.ut_01.FilePlayGround
 
+
 class MainActivity : AppCompatActivity() {
 
     //Listado de string
-
-    val colors : MutableList<String> = mutableListOf()
+    val colors: MutableList<String> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
         val dataStorageType = DataStorageType(this)
         //dataStorageType.privateFile()
         //dataStorageType.privateFileCache()
@@ -36,10 +35,11 @@ class MainActivity : AppCompatActivity() {
         dataStorageType.privateExternalCacheFile()
     }
 
-    private fun initColors(){
+    private fun initColors() {
         colors.add("Red")
         colors.add("Blue")
         colors.add("Yellow")
         colors.add("Pink")
     }
 }
+
