@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.mestabn.aad_playground.R
+import com.mestabn.aad_playground.commons.GsonSerializer
 
 /**
  * Actividad que me permite ejecutar una fuente de datos en concreto según el botón pulsado.
@@ -12,7 +13,7 @@ import com.mestabn.aad_playground.R
 class Exercise02Activity : AppCompatActivity() {
 
     private val TAG: String = Exercise02Activity::class.java.simpleName
-    private val factory = DataSourceFactory<TapaLocalModel>(this)
+    private val factory = LocalStorageFactory<TapaLocalModel>(this, GsonSerializer<TapaLocalModel>())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

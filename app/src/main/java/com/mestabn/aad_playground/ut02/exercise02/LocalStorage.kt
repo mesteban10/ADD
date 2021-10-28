@@ -52,7 +52,9 @@ class MemLocalStorage<T : LocalModel> : LocalStorage<T> {
         dataStore.add(model)
     }
 
-    override fun fetch(id: String): T? = dataStore.firstOrNull { id == it.getId().toString() }
+
+    override fun fetch(id: String): T? =
+        dataStore.firstOrNull { id == it.getId().toString() }
 
 }
 
