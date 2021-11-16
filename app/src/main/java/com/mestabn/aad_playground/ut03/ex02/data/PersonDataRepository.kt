@@ -10,11 +10,11 @@ import com.mestabn.aad_playground.ut03.ex02.dominio.PersonRepository
  */
 class PersonDataRepository(private val personLocalSource: PersonLocalSource) : PersonRepository {
 
-    override fun savePerson(personModel: PersonModel) {
+    override suspend fun savePerson(personModel: PersonModel) {
         personLocalSource.save(personModel)
     }
 
-    override fun fetchAll(): List<PersonModel>? = personLocalSource.findAll()
+    override suspend fun fetchAll(): List<PersonModel>? = personLocalSource.findAll()
 
 
 

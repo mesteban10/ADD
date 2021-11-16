@@ -2,6 +2,7 @@ package com.mestabn.aad_playground.ut03.ex02.presentation
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.mestabn.aad_playground.R
 import com.mestabn.aad_playground.ut03.ex02.data.PersonDataRepository
@@ -12,12 +13,8 @@ class Example02Activity : AppCompatActivity() {
 
     private val TAG = Example02Activity::class.java.simpleName
 
+    private val viewModel by viewModels<Example02ViewModel>()
 
-    //Lazy: crea el repositorio pero no le inicializa. Solo cuando llamo a la variable se inicializa
-    //Lo ponemos asi en vez de inicializarlo en el on create
-    private val repository: PersonRepository by lazy {
-        PersonDataRepository(PersonLocalSource(applicationContext))
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,22 +24,8 @@ class Example02Activity : AppCompatActivity() {
 
 
     private fun executeQuery() {
-        Thread {
-            repository.savePerson(
-                PersonModel(
-                    1, "Pepe", 10, "Calle Mayor",
-                    PetModel(3, "Pepe", 1),
-                    mutableListOf(CarModel(1, "Seat", "127"),
-                        CarModel(2, "Ford", "Malaga")
-                    ),
-                    mutableListOf(JobModel(1, "Teacher"),
-                        JobModel(2, "Android Developer")
-                    )
-                )
-            )
-            val people = repository.fetchAll()
-            Log.d("@dev", "$people")
-        }.start()
+        viewModel.saveUsers(applicationContext)
+        viewModel.fetchAll(applicationContext)
     }
 
 }

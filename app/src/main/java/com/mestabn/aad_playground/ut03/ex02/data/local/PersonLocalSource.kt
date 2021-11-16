@@ -4,6 +4,8 @@ import android.content.Context
 import com.mestabn.aad_playground.ut03.ex02.app.Ut03Ex02DataBase
 import com.mestabn.aad_playground.ut03.ex02.data.*
 import com.mestabn.aad_playground.ut03.ex02.dominio.PersonModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 
 /**
@@ -25,13 +27,13 @@ class PersonLocalSource(applicationContext: Context) {
         Thread.sleep(2000)
     }
 
-    fun findAll(): List<PersonModel> {
+    suspend fun findAll(): List<PersonModel> = withContext(Dispatchers.IO){
         val personAndPetsAndCars = db.personDao().getPersonAndPetAndCarsAndJobs()
-        return personAndPetsAndCars.map { element -> element.toModel() }
+        return@withContext personAndPetsAndCars.map { element -> element.toModel() }
     }
 
 
-    fun save(personModel: PersonModel) {
+    suspend fun save(personModel: PersonModel)= withContext(Dispatchers.IO) {
         db.personDao().insertPeopleAndPetAndCarsAndJobs(
                 PersonEntity.toEntity(personModel),
                 PetEntity.toEntity(personModel.petModel, personModel.id),
