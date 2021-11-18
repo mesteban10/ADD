@@ -1,8 +1,6 @@
 package com.mestabn.aad_playground.ut03.ex03_alerts.app.remote
 
 import com.mestabn.aad_playground.ut03.ex03_alerts.data.remote.AlertApiModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -46,21 +44,21 @@ class RetrofitApiClient : ApiClient {
             .connectTimeout(30, TimeUnit.SECONDS)
             .build()
 
-    override suspend fun getAlerts(): List<AlertApiModel> = withContext(Dispatchers.IO) {
+    override fun getAlerts(): List<AlertApiModel> {
         val response = apiEndPoint.getAlerts()
-        if (response.isSuccessful) {
+        return if (response.isSuccessful) {
             response.body()?.data ?: mutableListOf()
         } else {
             mutableListOf()
         }
     }
 
-    override suspend fun getAlert(alertId: String): AlertApiModel? = withContext(Dispatchers.IO){
+    override fun getAlert(alertId: String): AlertApiModel? {
         val response = apiEndPoint.getAlert(alertId)
         if (response.isSuccessful) {
-            response.body()?.data
+            return response.body()?.data
         } else {
-            null
+            return null
         }
     }
 }

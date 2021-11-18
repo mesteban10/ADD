@@ -8,12 +8,12 @@ import com.mestabn.aad_playground.ut03.ex03_alerts.domain.AlertRepository
 
 class AlertRemoteSource(private val apiClient: ApiClient) {
 
-    suspend fun getAlerts(): List<AlertModel> {
+    fun getAlerts(): List<AlertModel> {
         val alertApiModel = apiClient.getAlerts()
         return alertApiModel.map { apiModel -> apiModel.toDomainModel() }
     }
 
-    suspend fun getAlert(alertId: String): AlertModel? =
+     fun getAlert(alertId: String): AlertModel? =
         apiClient.getAlert(alertId)?.toDomainModel()
 
 }

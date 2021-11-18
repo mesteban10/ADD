@@ -22,10 +22,10 @@ class AlertAdapter : RecyclerView.Adapter<AlertViewHolder>() {
         addItems(items)
     }
 
-   /* fun setItem(item: AlertViewState){
+   fun setItem(item: AlertViewState){
         dataSet.clear()
         addItem(item)
-    }*/
+    }
 
 
     @SuppressLint("NotifyDataSetChanged")
@@ -34,12 +34,12 @@ class AlertAdapter : RecyclerView.Adapter<AlertViewHolder>() {
         notifyDataSetChanged()
     }
 
-    /*
+
     @SuppressLint("NotifyDataSetChanged")
     private fun addItem(item: AlertViewState) {
         dataSet.add(item)
         notifyDataSetChanged()
-    }*/
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlertViewHolder {
         val view = from(parent.context)

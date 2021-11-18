@@ -1,7 +1,9 @@
 package com.mestabn.aad_playground.ut03.ex03_alerts.data.local.db.entity
 
 import androidx.room.*
+import com.mestabn.aad_playground.ut03.ex03_alerts.data.local.db.AlertLocalModel
 import com.mestabn.aad_playground.ut03.ex03_alerts.domain.AlertModel
+import com.mestabn.aad_playground.ut03.ex03_alerts.domain.FileModel
 
 @Entity(tableName = "alert")
 data class AlertEntity(
@@ -12,7 +14,7 @@ data class AlertEntity(
     @ColumnInfo(name = "summary") val summary: String
 
 ) {
-    fun toModel(): AlertModel {
+    fun toModel(files: List<FileEntity>): AlertModel {
         return AlertModel(
             id,
             title,
@@ -20,8 +22,20 @@ data class AlertEntity(
             summary,
             date,
             "",
-            ""
+            "",
+            emptyList()
+        )
+    }
 
+    fun toLocalModel() : AlertLocalModel{
+        return AlertLocalModel(
+            id,
+            title,
+            type,
+            summary,
+            date,
+            "",
+            "",
         )
     }
 
@@ -31,7 +45,7 @@ data class AlertEntity(
 }
 }
 
-/*
+
 @Entity(tableName = "file")
 data class FileEntity(
     @PrimaryKey @ColumnInfo(name = "name") val name: String,
@@ -61,4 +75,3 @@ data class AlertAndFiles(
 ){
     fun toModel() = alertEntity.toModel(fileEntity)
 }
-*/

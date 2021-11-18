@@ -1,16 +1,21 @@
 package com.mestabn.aad_playground.ut03.ex03_alerts.data.local.db.dao
 
 import androidx.room.*
+import com.mestabn.aad_playground.ut03.ex03_alerts.data.local.db.entity.AlertAndFiles
 import com.mestabn.aad_playground.ut03.ex03_alerts.data.local.db.entity.AlertEntity
+import com.mestabn.aad_playground.ut03.ex03_alerts.data.local.db.entity.FileEntity
+import kotlinx.coroutines.Dispatchers
 
 @Dao
 interface AlertDao {
     @Transaction
     @Query("SELECT * FROM alert")
-    suspend fun findAll(): List<AlertEntity>
+    fun findAll(): List<AlertEntity>
 
     @Query("SELECT * FROM alert WHERE id = :alertId")
-    suspend fun findById(alertId: String): AlertEntity
+    fun findById(alertId: String): AlertEntity
+
+
 
     @Insert
     fun insertAll(alertEntity: List<AlertEntity>)
@@ -19,7 +24,7 @@ interface AlertDao {
     fun insert(alertEntity: AlertEntity)
 
 
-    /*
+
     @Insert
     fun insertAlertAndFiles(
         alertEntity: AlertEntity,
@@ -31,5 +36,5 @@ interface AlertDao {
     @Query("SELECT * FROM alert")
     fun getAlertAndFiles(): List<AlertAndFiles>
 
-     */
+
 }
