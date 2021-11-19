@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.mestabn.aad_playground.databinding.ActivityUt03Ex03Binding
-import com.mestabn.aad_playground.ut03.ex03_alerts.app.remote.RetrofitApiClient
+import com.mestabn.aad_playground.ut03.ex03_alerts.app.api.RetrofitApiClient
 import com.mestabn.aad_playground.ut03.ex03_alerts.data.AlertDataRepository
 import com.mestabn.aad_playground.ut03.ex03_alerts.data.local.AlertLocalSource
 import com.mestabn.aad_playground.ut03.ex03_alerts.data.remote.AlertRemoteSource

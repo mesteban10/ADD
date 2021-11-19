@@ -1,7 +1,6 @@
 package com.mestabn.aad_playground.ut03.ex03_alerts.data.local.db.entity
 
 import androidx.room.*
-import com.mestabn.aad_playground.ut03.ex03_alerts.data.local.db.AlertLocalModel
 import com.mestabn.aad_playground.ut03.ex03_alerts.domain.AlertModel
 import com.mestabn.aad_playground.ut03.ex03_alerts.domain.FileModel
 
@@ -23,21 +22,10 @@ data class AlertEntity(
             date,
             "",
             "",
-            emptyList()
+            mutableListOf()
         )
     }
 
-    fun toLocalModel() : AlertLocalModel{
-        return AlertLocalModel(
-            id,
-            title,
-            type,
-            summary,
-            date,
-            "",
-            "",
-        )
-    }
 
     companion object {
         fun toEntity(alertModel: AlertModel) =
@@ -46,20 +34,22 @@ data class AlertEntity(
 }
 
 
-@Entity(tableName = "file")
+@Entity(tableName = "files")
 data class FileEntity(
-    @PrimaryKey @ColumnInfo(name = "name") val name: String,
-    @ColumnInfo(name = "url") val url: String,
-    @ColumnInfo(name = "alert_id") val alertId: Long
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id") val fileId: Long?,
+    val name: String,
+    val url: String,
+    @ColumnInfo(name = "alert_id") val alertId: String
 ) {
     fun toModel() = FileModel(name, url)
 
     companion object {
-        fun toEntity(fileModel: List<FileModel>, alertId: Long) = fileModel.map {
-            FileEntity(it.name, it.url, alertId)
-        }
+        fun toEntity(alertId: String, fileModel: FileModel) =
+            FileEntity(null, fileModel.name, fileModel.url, alertId)
     }
 }
+
 
 /**
  * Una alerta puede tener de 1:N files.
@@ -72,6 +62,7 @@ data class AlertAndFiles(
         parentColumn = "id", //clave primaria de la entidad Alert
         entityColumn = "alert_id" //clave foránea de la entidad File.
     ) val fileEntity: List<FileEntity> //Entidad que recibe la clave de otra entidad
-){
+) {
     fun toModel() = alertEntity.toModel(fileEntity)
+
 }

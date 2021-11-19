@@ -7,7 +7,7 @@ interface LocalModel {
     fun getId(): String
 }
 
-class AlertLocalModel(
+class AlertsLocalModel(val index
     val title: String,
     val alertId: String,
     val type: Int,
