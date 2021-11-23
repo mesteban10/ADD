@@ -10,7 +10,9 @@ data class AlertEntity(
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "type") val type: Int,
     @ColumnInfo(name = "date") val date: String,
-    @ColumnInfo(name = "summary") val summary: String
+    @ColumnInfo(name = "summary") val summary: String,
+    @ColumnInfo(name = "body") val body: String,
+    @ColumnInfo(name = "source") val source: String
 
 ) {
     fun toModel(files: List<FileEntity>): AlertModel {
@@ -20,17 +22,25 @@ data class AlertEntity(
             type,
             summary,
             date,
-            "",
-            "",
-            mutableListOf()
+            body,
+            source,
+            files.map { fileEntity -> fileEntity.toModel() }
         )
     }
 
 
     companion object {
         fun toEntity(alertModel: AlertModel) =
-        AlertEntity(alertModel.id, alertModel.title, alertModel.type, alertModel.datePublished, alertModel.summary)
-}
+            AlertEntity(
+                alertModel.id,
+                alertModel.title,
+                alertModel.type,
+                alertModel.datePublished,
+                alertModel.summary,
+                alertModel.source,
+                alertModel.body
+            )
+    }
 }
 
 
@@ -43,6 +53,7 @@ data class FileEntity(
     @ColumnInfo(name = "alert_id") val alertId: String
 ) {
     fun toModel() = FileModel(name, url)
+
 
     companion object {
         fun toEntity(alertId: String, fileModel: FileModel) =

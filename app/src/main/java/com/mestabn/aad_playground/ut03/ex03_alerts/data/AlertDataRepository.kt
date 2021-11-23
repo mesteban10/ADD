@@ -14,13 +14,12 @@ class AlertDataRepository(
 ) : AlertRepository {
 
     override fun fetchAll(): List<AlertModel> {
-        return if (localSource.findAll().isEmpty()) {
-            val alerts = remoteSource.getAlerts()
-            alerts.map { remoteModel -> localSource.save(remoteModel) }
-            alerts
-        } else {
-            localSource.findAll()
+        var alerts = localSource.findAll()
+        if (alerts.isEmpty()) {
+            alerts = remoteSource.getAlerts()
+            localSource.save(alerts)
         }
+        return alerts
     }
 
     override fun fetchById(alertId: String): AlertModel? {
@@ -28,6 +27,8 @@ class AlertDataRepository(
             val alert = remoteSource.getAlert(alertId)
             if (alert != null) {
                return AlertLocalModel(alert.title, alert.id, alert.type)
+            }else{
+                null
             }
         }
 

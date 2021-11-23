@@ -3,11 +3,9 @@ package com.mestabn.aad_playground.ut03.ex03_alerts.data.local.db
 import com.mestabn.aad_playground.ut03.ex03_alerts.data.local.db.entity.AlertEntity
 import com.mestabn.aad_playground.ut03.ex03_alerts.domain.AlertModel
 
-interface LocalModel {
-    fun getId(): String
-}
 
-class AlertsLocalModel(val index
+
+class AlertLocalModel(val index
     val title: String,
     val alertId: String,
     val type: Int,

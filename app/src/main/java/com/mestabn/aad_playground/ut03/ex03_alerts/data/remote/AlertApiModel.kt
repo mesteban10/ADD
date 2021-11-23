@@ -19,10 +19,10 @@ data class AlertApiModel(
         summary,
         date,
         body ?: "",
-        source ?: ""
+        source ?: "",
+        mutableListOf()
 
     )
-
 
 
 }
