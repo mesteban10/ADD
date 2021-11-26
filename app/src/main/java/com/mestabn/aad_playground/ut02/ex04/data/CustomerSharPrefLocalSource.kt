@@ -70,7 +70,7 @@ class CustomerSharPrefLocalSource(
      */
     fun fetch(): List<CustomerModel> {
        val edit =  encryptSharedPref.getString(ID, "")
-        edit.map { string -> CustomerModel }
+
 
         return emptyList()
     }
