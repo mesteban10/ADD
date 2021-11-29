@@ -26,18 +26,22 @@ class InvoiceSharPrefLocalSource(
 
     fun save(invoice: InvoiceModel) {
         val edit = sharedPref.edit()
-        edit.putString(
-            CustomerSharPrefLocalSource.ID,
+        edit?.putString(
+            invoice.id.toString(),
             serializer.toJson(invoice, InvoiceModel::class.java)
         )
-        edit.commit()
+        edit?.apply()
     }
 
     /**
      * Función que me permite eliminar un cliente de un SharedPreferences.
      */
     fun remove(invoiceId: Int) {
-        sharedPref.getString(invoiceId.toString(), "")?.drop(invoiceId)
+        if (sharedPref.contains(invoiceId.toString())) {
+            val edit = sharedPref.edit()
+            edit.remove(invoiceId.toString())
+            edit.apply()
+        }
 
     }
 
@@ -45,21 +49,25 @@ class InvoiceSharPrefLocalSource(
      * Función que me permite obtener un listado de todos los clientes almacenados en un SharedPreferences.
      */
     fun fetch(): List<InvoiceModel> {
-        //TODO
+        val invoices: MutableList<InvoiceModel> = mutableListOf()
+        sharedPref.all.map {
+            val invoiceModel = serializer.fromJson(it.toString(), InvoiceModel::class.java)
+            invoices.add(invoiceModel)
+            return invoices.toList()
+        }
+
         return emptyList()
     }
 
-    fun findById(customerId: Int): CustomerModel? {
-        val edit = sharedPref.getString(customerId.toString(), "")
+    fun findById(invoiceId: Int): InvoiceModel? {
+        val edit = sharedPref.getString(invoiceId.toString(), "")
         return if (edit.isNullOrEmpty()) {
             return null
         } else {
-            serializer.fromJson(edit, CustomerModel::class.java)
+            serializer.fromJson(edit, InvoiceModel::class.java)
         }
 
     }
 
-    companion object {
-        val ID: String = CustomerModel::class.java.simpleName
-    }
+
 }
