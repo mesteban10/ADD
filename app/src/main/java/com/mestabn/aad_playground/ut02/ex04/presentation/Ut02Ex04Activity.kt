@@ -42,9 +42,6 @@ class Ut02Ex04Activity : AppCompatActivity() {
         binding.actionDeleteCustomer.setOnClickListener {
             deleteCustomer()
         }
-        /*   binding.actionDeleteCustomerFile.setOnClickListener {
-               deleteCustomerFile()
-           }*/
         binding.actionViewCustomerFile.setOnClickListener {
             logCustomers()
         }
@@ -52,42 +49,42 @@ class Ut02Ex04Activity : AppCompatActivity() {
 
     private fun saveCustomer() {
         val customer = CustomerModel(1, "Cliente01", "ClienteSurname01")
-        Thread{localData.save(customer)}
+        localData.save(customer)
     }
 
     private fun saveCustomers() {
         val customer1 = CustomerModel(2, "Cliente02", "ClienteSurname02")
         val customer2 = CustomerModel(3, "Cliente03", "ClienteSurname03")
-       Thread{ localData.save(mutableListOf(customer1, customer2))}
+        localData.save(mutableListOf(customer1, customer2))
     }
 
     private fun updateCustomers() {
         val customer = CustomerModel(1, "Cliente0001", "ClienteSurname0001")
-       Thread{ localData.update(customer)}
+         localData.update(customer)
     }
 
     private fun deleteCustomer() {
-        Thread{localData.remove(3)}
+        localData.remove(3)
     }
 
 
     private fun logCustomers() {
-        Thread {
-            val customers = localData.fetch()
-            runOnUiThread {
-                if (customers.isEmpty()) {
-                    Log.d("CustomerFile:", "File is empty")
-                } else {
-                    customers.forEach { customerModel ->
-                        Log.d("CustomerFile:", customerModel.toString())
-                    }
 
-                }
+        val customers = localData.fetch()
+
+        if (customers.isEmpty()) {
+            Log.d("CustomerFile:", "File is empty")
+        } else {
+            customers.forEach { customerModel ->
+                Log.d("CustomerFile:", customerModel.toString())
             }
 
-
         }
-
-
     }
+
+
 }
+
+
+
+

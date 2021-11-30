@@ -3,72 +3,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center_vertical"
+    android:background="@color/black"
+    android:gravity="center"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
+
+    <Button
+        android:id="@+id/action_save_customer"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:text="@string/action_text_save_customer" />
 
-        <Button
-            android:id="@+id/action_save_customer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/action_text_save_customer" />
 
-        <View
-            android:layout_width="10dp"
-            android:layout_height="10dp" />
-
-        <Button
-            android:id="@+id/action_save_customers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/action_text_save_customers" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/action_save_customers"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:text="@string/action_text_save_customers" />
 
-        <Button
-            android:id="@+id/action_update_customer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/action_text_update_customers" />
 
-        <View
-            android:layout_width="10dp"
-            android:layout_height="10dp" />
-
-        <Button
-            android:id="@+id/action_delete_customer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/action_text_delete_customers" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/action_update_customer"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:text="@string/action_text_update_customers" />
 
-        <Button
-            android:id="@+id/action_delete_customer_file"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:text="@string/action_text_delete_customer_file" />
 
-        <Button
-            android:id="@+id/action_view_customer_file"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/action_text_view_customer_file" />
+    <Button
+        android:id="@+id/action_delete_customer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_text_delete_customers" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <Button
+        android:id="@+id/action_delete_customer_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_text_search_customer_by_id" />
+
+    <Button
+        android:id="@+id/action_view_customer_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_text_view_customer_file_xml" />
+
 
 </LinearLayout>

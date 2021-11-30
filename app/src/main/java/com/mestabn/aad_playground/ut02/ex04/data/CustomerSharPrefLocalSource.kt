@@ -87,7 +87,6 @@ class CustomerSharPrefLocalSource(
      * Función que me permite obtener un listado de todos los clientes almacenados en un SharedPreferences.
      */
     fun fetch(): List<CustomerModel> {
-
         val customers: MutableList<CustomerModel> = mutableListOf()
         val jasonString = encryptSharedPref.all.map { it.value }
         jasonString.map { jsonString ->

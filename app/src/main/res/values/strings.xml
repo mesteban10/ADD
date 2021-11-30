@@ -12,6 +12,6 @@
     <string name="action_text_save_customers">Guardar Clientes</string>
     <string name="action_text_update_customers">Actualizar Cliente</string>
     <string name="action_text_delete_customers">Eliminar Cliente</string>
-    <string name="action_text_delete_customer_file">Eliminar Fichero</string>
-    <string name="action_text_view_customer_file">Visualizar Fichero</string>
+    <string name="action_text_search_customer_by_id">Buscar cliente por ID</string>
+    <string name="action_text_view_customer_file_xml">Visualizar Fichero XML</string>
 </resources>
