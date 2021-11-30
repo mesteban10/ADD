@@ -1,6 +1,6 @@
 package com.mestabn.aad_playground.ut02.ex04.domain
 
-import com.mestabn.aad_playground.ut02.ex04.app.LocalModel
+
 import java.util.*
 
 data class CustomerModel(val id: Int, val name: String, val surname: String)

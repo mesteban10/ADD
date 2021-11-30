@@ -38,7 +38,7 @@
 
 
     <Button
-        android:id="@+id/action_delete_customer_file"
+        android:id="@+id/action_search_by_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/action_text_search_customer_by_id" />
@@ -48,6 +48,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/action_text_view_customer_file_xml" />
+
+
 
 
 </LinearLayout>

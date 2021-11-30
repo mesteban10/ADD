@@ -49,22 +49,21 @@ class InvoiceSharPrefLocalSource(
      * Función que me permite obtener un listado de todos los clientes almacenados en un SharedPreferences.
      */
     fun fetch(): List<InvoiceModel> {
-        val invoices: MutableList<InvoiceModel> = mutableListOf()
-        sharedPref.all.map {
-            val invoiceModel = serializer.fromJson(it.toString(), InvoiceModel::class.java)
-            invoices.add(invoiceModel)
-            return invoices.toList()
+        val customers: MutableList<InvoiceModel> = mutableListOf()
+        val jsonString = sharedPref.all.values.map {
+            serializer.fromJson(
+                it.toString(),
+                InvoiceModel::class.java
+            )
         }
-
-        return emptyList()
+        customers.addAll(jsonString)
+        return customers.toList()
     }
 
     fun findById(invoiceId: Int): InvoiceModel? {
         val edit = sharedPref.getString(invoiceId.toString(), "")
-        return if (edit.isNullOrEmpty()) {
-            return null
-        } else {
-            serializer.fromJson(edit, InvoiceModel::class.java)
+        return edit?.let {
+            serializer.fromJson(it, InvoiceModel::class.java)
         }
 
     }

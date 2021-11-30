@@ -1,12 +1,9 @@
 package com.mestabn.aad_playground.ut02.ex04.data
 
-import android.os.Build.ID
 import androidx.appcompat.app.AppCompatActivity
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
-import com.mestabn.aad_playground.R
 import com.mestabn.aad_playground.commons.serializer.JsonSerializer
-import com.mestabn.aad_playground.ut02.ex04.app.LocalModel
 import com.mestabn.aad_playground.ut02.ex04.domain.CustomerModel
 
 /**
@@ -75,7 +72,6 @@ class CustomerSharPrefLocalSource(
      */
 
     fun remove(customerId: Int) {
-        // encryptSharedPref.getString(customerId.toString(), "")?.drop(customerId)
         if (encryptSharedPref.contains(customerId.toString())) {
             val edit = encryptSharedPref.edit()
             edit.remove(customerId.toString())
@@ -88,24 +84,21 @@ class CustomerSharPrefLocalSource(
      */
     fun fetch(): List<CustomerModel> {
         val customers: MutableList<CustomerModel> = mutableListOf()
-        val jasonString = encryptSharedPref.all.map { it.value }
-        jasonString.map { jsonString ->
+        val jsonString = encryptSharedPref.all.values.map {
             serializer.fromJson(
-                jsonString.toString(),
+                it.toString(),
                 CustomerModel::class.java
             )
         }
-
+        customers.addAll(jsonString)
         return customers.toList()
     }
 
 
     fun findById(customerId: Int): CustomerModel? {
         val edit = encryptSharedPref.getString(customerId.toString(), "")
-        return if (edit.isNullOrEmpty()) {
-            return null
-        } else {
-            serializer.fromJson(edit, CustomerModel::class.java)
+        return edit?.let {
+            serializer.fromJson(it, CustomerModel::class.java)
         }
 
     }

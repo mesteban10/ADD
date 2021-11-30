@@ -1,23 +1,19 @@
 package com.mestabn.aad_playground.ut02.ex04.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
-import com.mestabn.aad_playground.R
 import com.mestabn.aad_playground.commons.serializer.GsonSerializer
 import com.mestabn.aad_playground.databinding.ActivityUt02Ex04Binding
 import com.mestabn.aad_playground.ut02.ex04.data.CustomerSharPrefLocalSource
 import com.mestabn.aad_playground.ut02.ex04.domain.CustomerModel
-import com.mestabn.aad_playground.ut02.ex04.domain.InvoiceModel
 
 class Ut02Ex04Activity : AppCompatActivity() {
     private val localData: CustomerSharPrefLocalSource by lazy {
         CustomerSharPrefLocalSource(this, GsonSerializer(Gson()))
     }
-    private val localDataInvoiceModel: CustomerSharPrefLocalSource by lazy {
-        CustomerSharPrefLocalSource(this, GsonSerializer(Gson()))
-    }
+
 
     private val binding: ActivityUt02Ex04Binding by lazy {
         ActivityUt02Ex04Binding.inflate(layoutInflater)
@@ -45,6 +41,9 @@ class Ut02Ex04Activity : AppCompatActivity() {
         binding.actionViewCustomerFile.setOnClickListener {
             logCustomers()
         }
+        binding.actionSearchById.setOnClickListener {
+            findById()
+        }
     }
 
     private fun saveCustomer() {
@@ -63,8 +62,15 @@ class Ut02Ex04Activity : AppCompatActivity() {
          localData.update(customer)
     }
 
+    private fun findById(){
+
+        localData.findById(2)
+
+    }
+
     private fun deleteCustomer() {
         localData.remove(3)
+        localData.remove(2)
     }
 
 
