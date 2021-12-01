@@ -1,13 +1,20 @@
 ## Description
-<!-- Describe your changes in detail -->
+<!-- Descripción sobre lo hecho en la PR -->
 
-## Related Issue
-<!-- Please link to the issue here: -->
-
-## How has this been tested?
-<!-- Please, describe in detail how you tested your changes -->
-
-## Design UI
-<!-- Please add the design to develop -->
+## Keywords
+<!-- Palabras relacionadas con los conceptos vistos -->
 
 ## Screenshots or Video
+<!-- Captura de pantalla de la consola -->
+
+## Objetivos
+<!-- Buscar en el README el Resultado de Aprendizaje con el que se está trabajando -->
+
+## Criterios de Evaluación
+<!--
+    Buscar en el README los criterios de Evaluación con los que se están trabajando.
+    Marca con una [X] los conseguidos. Ejemplo:
+    [ ] Criterio Evaluación 1.
+    [ ] Criterio Evaluación 2.
+    [X] Criterio Evaluación 3.
+-->
