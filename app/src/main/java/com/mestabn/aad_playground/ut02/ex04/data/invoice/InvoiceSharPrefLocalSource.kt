@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 class InvoiceSharPrefLocalSource(
     private val context: AppCompatActivity,
     private val serializer: JsonSerializer
-): InvoiceLocalStorage {
+) : InvoiceLocalStorage {
 
     private val nameXmlFile = "ut02_ex04_sharedpref"
     private val sharedPref = context.getSharedPreferences(nameXmlFile, Context.MODE_PRIVATE)
@@ -46,20 +46,19 @@ class InvoiceSharPrefLocalSource(
     /**
      * Función que me permite obtener un listado de todos los clientes almacenados en un SharedPreferences.
      */
-    override fun fetch(): List<InvoiceModel> = with(Dispatchers.IO){
-        clearFileXml()
-        val customersList: MutableList<InvoiceModel> = mutableListOf()
-        val customers = sharedPref.all.values.map {
+    override fun fetch(): List<InvoiceModel> {
+        val invoicesList: MutableList<InvoiceModel> = mutableListOf()
+        val invoices = sharedPref.all.values.map {
             serializer.fromJson(
                 it.toString(),
                 InvoiceModel::class.java
             )
         }
-        customersList.addAll(customers)
-        return customersList.toList()
+        invoicesList.addAll(invoices)
+        return invoicesList.toList()
     }
 
-    override fun findById(invoiceId: Int): InvoiceModel?  = with(Dispatchers.IO){
+    override fun findById(invoiceId: Int): InvoiceModel? {
         val edit = sharedPref.getString(invoiceId.toString(), "")
         return edit?.let {
             serializer.fromJson(it, InvoiceModel::class.java)
@@ -67,12 +66,4 @@ class InvoiceSharPrefLocalSource(
 
     }
 
-    private fun clearFileXml() {
-        val edit = sharedPref.edit()
-        sharedPref.all.map { encrypt ->
-            edit.remove(encrypt.key)
-        }
-        edit.apply()
-
-    }
 }

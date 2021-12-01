@@ -55,10 +55,8 @@ class Ut02Ex04Activity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        runOnUiThread {
-            customersViewModel.setupView()
-            invoicesViewModel.setupView()
-        }
+        customersViewModel.setupView()
+        invoicesViewModel.setupView()
 
     }
 

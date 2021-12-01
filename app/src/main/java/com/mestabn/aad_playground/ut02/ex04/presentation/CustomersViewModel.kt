@@ -2,14 +2,8 @@ package com.mestabn.aad_playground.ut02.ex04.presentation
 
 import android.util.Log
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import com.mestabn.aad_playground.R
 import com.mestabn.aad_playground.databinding.ActivityUt02Ex04Binding
 import com.mestabn.aad_playground.ut02.ex04.domain.CustomerModel
-import com.mestabn.aad_playground.ut02.ex04.domain.CustomerUseCases.DeleteCustomerUseCase
-import com.mestabn.aad_playground.ut02.ex04.domain.CustomerUseCases.GetCustomerUseCase
-import com.mestabn.aad_playground.ut02.ex04.domain.CustomerUseCases.GetCustomersUseCase
-import com.mestabn.aad_playground.ut02.ex04.domain.CustomerUseCases.SaveCustomerUseCase
 import com.mestabn.aad_playground.ut02.ex04.domain.CustomersData
 
 class CustomersViewModel(

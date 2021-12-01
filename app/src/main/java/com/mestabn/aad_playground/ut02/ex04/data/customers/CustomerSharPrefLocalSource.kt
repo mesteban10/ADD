@@ -13,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 class CustomerSharPrefLocalSource(
     private val context: AppCompatActivity,
     private val serializer: JsonSerializer
-): CustomerLocalStorage {
+) : CustomerLocalStorage {
 
     private val nameXmlFile = "ut02_ex04_sharedpref_encrypt"
 
@@ -55,7 +55,7 @@ class CustomerSharPrefLocalSource(
      * Función que me permite modificar los datos de un cliente que se encuentran en un fichero.
      * Se puede modificar cualquier dato excepto el id del cliente.
      */
-    override fun update(customer: CustomerModel) = with(Dispatchers.IO){
+    override fun update(customer: CustomerModel) {
         if (encryptSharedPref.contains(customer.id.toString())) {
             remove(customer.id)
         }
@@ -84,7 +84,7 @@ class CustomerSharPrefLocalSource(
     /**
      * Función que me permite obtener un listado de todos los clientes almacenados en un SharedPreferences.
      */
-    override fun fetch(): List<CustomerModel>  = with(Dispatchers.IO){
+    override fun fetch(): List<CustomerModel> {
         val customersList: MutableList<CustomerModel> = mutableListOf()
         val customers = encryptSharedPref.all.values.map {
             serializer.fromJson(
@@ -97,7 +97,7 @@ class CustomerSharPrefLocalSource(
     }
 
 
-    override fun findById(customerId: Int): CustomerModel?  = with(Dispatchers.IO){
+    override fun findById(customerId: Int): CustomerModel? {
         val edit = encryptSharedPref.getString(customerId.toString(), "")
         return edit?.let {
             serializer.fromJson(it, CustomerModel::class.java)
@@ -105,9 +105,9 @@ class CustomerSharPrefLocalSource(
 
     }
 
-    private fun clearFileXml(){
+    private fun clearFileXml() {
         val edit = encryptSharedPref.edit()
-        encryptSharedPref.all.map { encrypt->
+        encryptSharedPref.all.map { encrypt ->
             edit.remove(encrypt.key)
         }
         edit.apply()

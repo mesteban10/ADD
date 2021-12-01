@@ -3,7 +3,8 @@ package com.mestabn.aad_playground.ut02.ex04.data.invoice
 import com.mestabn.aad_playground.ut02.ex04.domain.InvoiceModel
 import com.mestabn.aad_playground.ut02.ex04.domain.InvoiceRepository
 
-class InvoiceLocalRepository(private val invoiceLocalSource: InvoiceLocalStorage) : InvoiceRepository {
+class InvoiceLocalRepository(private val invoiceLocalSource: InvoiceLocalStorage) :
+    InvoiceRepository {
     override fun save(invoice: InvoiceModel) {
         invoiceLocalSource.save(invoice)
     }

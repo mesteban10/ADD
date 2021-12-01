@@ -2,7 +2,6 @@ package com.mestabn.aad_playground.ut02.ex04.data.customers
 
 import com.mestabn.aad_playground.ut02.ex04.domain.CustomerModel
 
-
 interface CustomerLocalStorage {
     fun save(customer: CustomerModel)
     fun save(customers: List<CustomerModel>)
