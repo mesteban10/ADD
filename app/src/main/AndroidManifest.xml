@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AADPlayGround">
         <activity
-            android:name=".ut03.ex02.presentation.Example02Activity"
+            android:name=".ut03.ex04.presentation.Ut03Ex04Activity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,9 +19,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ut03.ex01.DataBaseActivity"
+            android:name=".ut03.ex02.presentation.Example02Activity"
             android:exported="true"/>
 
+        <activity
+            android:name=".ut03.ex01.DataBaseActivity"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />

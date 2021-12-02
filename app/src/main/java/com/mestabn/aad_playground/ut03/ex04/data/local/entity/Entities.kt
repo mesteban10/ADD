@@ -10,42 +10,45 @@ import com.mestabn.aad_playground.ut03.ex04.domain.InvoiceModel
 import com.mestabn.aad_playground.ut03.ex04.domain.ProductModel
 import java.util.*
 
-
-@Entity(tableName = "invoice")
-data class InvoiceEntity(
-    @PrimaryKey @ColumnInfo(name = "id") val id: Int,
-    @ColumnInfo(name = "date") val date: Date
-
-) {
-    fun toModel(customerEntity: CustomerEntity, invoiceLinesEntity: List<InvoiceLinesEntity>) =
-        InvoiceModel(
-            id,
-            date,
-            customerEntity.toModel(),
-            invoiceLinesEntity.map { it.toModel() }.toMutableList()
-        )
-
-    companion object {
-        fun toEntity(invoiceModel: InvoiceModel) =
-            InvoiceEntity(invoiceModel.id, invoiceModel.date)
-    }
-
-}
-
-
 @Entity(tableName = "customer")
 class CustomerEntity(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") val id: Int,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "surname") val surname: String,
-    @ColumnInfo(name = "invoice_id") val invoiceId: Int
-) {
+
+    ) {
     fun toModel() = CustomerModel(id, name, surname)
 
     companion object {
-        fun toEntity(customerModel: CustomerModel, invoiceId: Int) =
-            CustomerEntity(customerModel.id, customerModel.name, customerModel.surname, invoiceId)
+        fun toEntity(customerModel: CustomerModel) =
+            CustomerEntity(customerModel.id, customerModel.name, customerModel.surname)
     }
+}
+
+@Entity(tableName = "invoice")
+data class InvoiceEntity(
+    @PrimaryKey @ColumnInfo(name = "id") val id: Int,
+    @ColumnInfo(name = "date") val date: String,
+    @ColumnInfo(name = "customer_id") val customerId: Int
+
+) {
+    fun toModel(
+        customerEntity: CustomerEntity,
+        invoiceLinesEntity: List<InvoiceLinesEntity>,
+        productEntity: ProductEntity
+    ) =
+        InvoiceModel(
+            id,
+            date,
+            customerEntity.toModel(),
+            invoiceLinesEntity.map { it.toModel(productEntity) }.toMutableList()
+        )
+
+    companion object {
+        fun toEntity(invoiceModel: InvoiceModel, customerId: Int) =
+            InvoiceEntity(invoiceModel.id, invoiceModel.date, customerId)
+    }
+
 }
 
 
@@ -56,6 +59,7 @@ data class InvoiceLinesEntity(
     @ColumnInfo(name = "product_id") val productId: Int,
 ) {
     fun toModel(productEntity: ProductEntity) = InvoiceLinesModel(id, productEntity.toModel())
+
 
     companion object {
         fun toEntity(invoiceLinesModel: List<InvoiceLinesModel>, invoiceId: Int, productId: Int) =
@@ -86,18 +90,29 @@ data class ProductEntity(
     }
 }
 
+data class InvoiceAndCustomer(
+    @Embedded val customerEntity: CustomerEntity, //Entidad Principal
+    @Relation(
+        parentColumn = "id", //clave primaria de la entidad Person.
+        entityColumn = "customer_id" //clave foránea de la entidad Pet.
+    ) val invoiceEntity: InvoiceEntity
+)
+
+data class ProductAndInvoiceLines(
+    @Embedded val productEntity: ProductEntity, //Entidad Principal
+    @Relation(
+        parentColumn = "id", //clave primaria de la entidad Person.
+        entityColumn = "product_id" //clave foránea de la entidad Pet.
+    ) val invoiceLinesEntity: InvoiceLinesEntity
+)
 
 
-data class InvoiceAndCustomerAndInvoiceLines(
+data class InvoiceAndInvoiceLines(
     @Embedded val invoiceEntity: InvoiceEntity,
 
     @Relation(
         parentColumn = "id", //clave primaria de la entidad Person.
         entityColumn = "invoice_id" //clave foránea de la entidad Pet.
-    ) val customerEntity: CustomerEntity, //Entidad que recibe la clave de otra entidad
+    ) val invoiceLinesEntity: InvoiceLinesEntity, //Entidad que recibe la clave de otra entidad
 
-    @Relation(
-        parentColumn = "id", //clave primaria de la entidad Person.
-        entityColumn = "invoice_id" //clave foránea de la entidad Car.
-    ) val invoiceLinesEntity: List<InvoiceLinesEntity> //Entidad que recibe la clave de otra entidad
 )

@@ -24,8 +24,8 @@ class Example02Activity : AppCompatActivity() {
 
 
     private fun executeQuery() {
-        viewModel.saveUsers(applicationContext)
-        viewModel.fetchAll(applicationContext)
+        viewModel.saveUsers(this)
+        viewModel.fetchAll(this)
     }
 
 }
