@@ -1,8 +1,5 @@
 package com.mestabn.aad_playground
 
-import com.mestabn.aad_playground.ut_01.exercise01.data.FileDataSource
-import com.mestabn.aad_playground.ut_01.exercise01.data.MemDataSource
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.RadioGroup
 import android.widget.TextView
