@@ -1,9 +1,8 @@
 package com.mestabn.aad_playground.commons
 
-
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.mestabn.aad_playground.ut02.exercise02.TapaLocalModel
+import com.mestabn.aad_playground.ut03.ex03_alerts.domain.AlertModel
 import java.lang.reflect.Type
 
 interface Serializer<T> {
@@ -19,9 +18,9 @@ interface Serializer<T> {
 class GsonSerializer<T> : Serializer<T> {
 
     private val gson = Gson()
-    private val types: Type = TypeToken.getParameterized(TapaLocalModel::class.java).type
+    private val types: Type = TypeToken.getParameterized(AlertModel::class.java).type
 
-    override fun toJson(model: T): String =
+    override fun toJson(model: T): String  =
         gson.toJson(model, types)
 
     override fun fromJson(json: String): T {

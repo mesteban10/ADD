@@ -28,24 +28,33 @@ class FilePlayGround(private val activity: AppCompatActivity) {
         //pendTextWithNewLine()
         //readLineByLine()
         //deleteFile()
-        createFolder()
+        //createFolder()
 
     }
 
-    /*
-    fun createFile(){
-        val file= File(activity.filesDir,"add.txt") //Ruta interna donde se instala la aplicacion y nombre del fichero
-        Log.d("@dev",activity.filesDir.absolutePath) //Crea mensajes que se muestran en Logcat
+
+    fun createFile() {
+        val file = File(
+            activity.filesDir,
+            "add.txt"
+        ) //Ruta interna donde se instala la aplicacion y nombre del fichero
+        Log.d("@dev", activity.filesDir.absolutePath) //Crea mensajes que se muestran en Logcat
     }
-    */
+
 
     fun writeFile() {
-        val file = File(activity.filesDir, "add.txt") //Ruta interna donde se instala la aplicacion y nombre del fichero
+        val file = File(
+            activity.filesDir,
+            "add.txt"
+        ) //Ruta interna donde se instala la aplicacion y nombre del fichero
         file.writeText("hola acceso a datos") //Crea mensajes que se muestran en Logcat
     }
 
     fun readFile() {
-        val file = File(activity.filesDir, "add.txt") //Ruta interna donde se instala la aplicacion y nombre del fichero
+        val file = File(
+            activity.filesDir,
+            "add.txt"
+        ) //Ruta interna donde se instala la aplicacion y nombre del fichero
         val line = file.readText() //Leo el texto y guardo en variable
         Log.d("@dev", line)
     }
@@ -55,13 +64,16 @@ class FilePlayGround(private val activity: AppCompatActivity) {
     Metodo que añade una linea al fichero
      */
 
-    fun appendText(){
-        val file= File(activity.filesDir,"add.txt") //Ruta interna donde se instala la aplicacion y nombre del fichero
+    fun appendText() {
+        val file = File(
+            activity.filesDir,
+            "add.txt"
+        ) //Ruta interna donde se instala la aplicacion y nombre del fichero
         file.appendText("Hola2") //metodo que añade linea
         file.appendText("Hola3")
         file.appendText("Hola4")
         val line = file.readText()
-        Log.d("@dev",line)
+        Log.d("@dev", line)
     }
 
     /*
@@ -69,7 +81,10 @@ class FilePlayGround(private val activity: AppCompatActivity) {
      */
 
     fun appendTextWithNewLine() {
-        val file = File(activity.filesDir, "add.txt") //Ruta interna donde se instala la aplicacion y nombre del fichero
+        val file = File(
+            activity.filesDir,
+            "add.txt"
+        ) //Ruta interna donde se instala la aplicacion y nombre del fichero
         file.appendText("\n") //metodo que añade linea
         file.appendText("Adios1")
         file.appendText("\n")
@@ -80,7 +95,7 @@ class FilePlayGround(private val activity: AppCompatActivity) {
 
 
     //Leer linea por linea
-    fun readLineByLine(){
+    fun readLineByLine() {
         val file = File(activity.filesDir, "add.txt")
         file.writeText("Linea 1")
         file.appendText("\n")
@@ -88,31 +103,30 @@ class FilePlayGround(private val activity: AppCompatActivity) {
         file.appendText("\n")
         file.appendText("Linea 3")
 
-        val lines : List<String> = file.readLines()
+        val lines: List<String> = file.readLines()
         //froma de recorrer un listado de objetos -->forEach
-        lines.forEach{
+        lines.forEach {
             Log.d("@dev", it)
         }
 
 
-
     }
 
-    fun deleteFile(){
+    fun deleteFile() {
         val file = File(activity.filesDir, "add.txt")
-        if(file.exists()){
+        if (file.exists()) {
             file.delete()
         }
     }
 
-        /**
-         * Guarda un array de strings en un fichero
-         */
-    fun saveToFile(colors:MutableList<String>){
+    /**
+     * Guarda un array de strings en un fichero
+     */
+    fun saveToFile(colors: MutableList<String>) {
         val file = File(activity.filesDir, "colors.txt")
-            if(file.exists()){
-                file.writeText("") //Escribo fichero desde cero, vacio
-            }
+        if (file.exists()) {
+            file.writeText("") //Escribo fichero desde cero, vacio
+        }
 
         //voy metiendo los colores en el fichero
         colors.forEach {
@@ -128,29 +142,28 @@ class FilePlayGround(private val activity: AppCompatActivity) {
     fun readFromFile(): MutableList<String> {
         val file = File(activity.filesDir, "colors.txt")
 
-        return if (file.exists()){
+        return if (file.exists()) {
             file.readLines().toMutableList()
-        }else
+        } else
             mutableListOf()
-        }
+    }
 
 
     /**
      * Funcion para crear carpetas
      */
 
-    fun createFolder(){
+    fun createFolder() {
         //Opcion 1
         val file = File(activity.filesDir, "/docs")
         file.mkdir()
     }
 
-    fun createFileInFolder(){
+    fun createFileInFolder() {
         val file = File(activity.filesDir.canonicalPath, "/documents")
         file.writeText("Hola!")
         //file.createNewFile()
     }
-
 
 
 }
