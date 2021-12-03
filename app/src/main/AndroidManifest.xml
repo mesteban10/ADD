@@ -17,6 +17,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ut02.SharedPreferencesActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".ut02.exercise02.Exercise02Activity"
+            android:exported="true" >
+        </activity>
     </application>
 
 </manifest>
