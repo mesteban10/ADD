@@ -1,8 +1,8 @@
-package com.mestabn.aad_playground.commons.serializer
+package com.mestabn.aad_playground.ut03.ex03_alerts.app.serializer
 
 import com.google.gson.Gson
 
-class GsonSerializer(val gson: Gson) : JsonSerializer {
+class GsonSerializer constructor(private val gson: Gson) : JsonSerializer {
 
     override fun <T> toJson(obj: T, typeClass: Class<T>): String = gson.toJson(obj, typeClass)
 
