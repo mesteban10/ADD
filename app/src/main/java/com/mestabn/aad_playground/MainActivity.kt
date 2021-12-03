@@ -114,7 +114,6 @@ class MainActivity : AppCompatActivity() {
         textFileContent.text = null
     }
 
-    @SuppressLint("SetTextI18n")
     private fun showAllFiles() {
         viewerFiles.text = ""
         dataSource.showAll().forEach {
