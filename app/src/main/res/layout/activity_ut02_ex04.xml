@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/customer_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GESTION DE CLIENTES"
+        android:textColor="@color/white"/>
+
+    <Button
+        android:id="@+id/action_save_customer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_text_save_customer"
+        tools:ignore="MissingConstraints" />
+
+
+    <Button
+        android:id="@+id/action_save_customers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_text_save_customers"
+        tools:ignore="MissingConstraints" />
+
+
+    <Button
+        android:id="@+id/action_update_customer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_text_update_customers" />
+
+
+    <Button
+        android:id="@+id/action_delete_customer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_text_delete_customers" />
+
+
+    <Button
+        android:id="@+id/action_search_by_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_text_search_customer_by_id" />
+
+    <Button
+        android:id="@+id/action_view_customer_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_text_view_customer_file_xml" />
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:paddingTop="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GESTION DE FACTURAS"/>
+
+        <Button
+            android:id="@+id/action_save_invoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guardar Factura"
+            tools:ignore="MissingConstraints" />
+
+
+        <Button
+            android:id="@+id/action_delete_invoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Eliminar Factura" />
+
+
+        <Button
+            android:id="@+id/action_search_by_id_invoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buscar Factura por ID" />
+
+        <Button
+            android:id="@+id/action_view_invoice_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Visualizar fichero de factura" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

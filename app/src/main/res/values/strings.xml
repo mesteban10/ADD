@@ -20,4 +20,12 @@
     <string name="label_button_delete_file">Eliminar fichero</string>
     <string name="label_button_file">Fichero</string>
     <string name="label_button_mem">Memoria</string>
+
+    <!-- Actions Buttons -->
+    <string name="action_text_save_customer">Guardar Cliente</string>
+    <string name="action_text_save_customers">Guardar Clientes</string>
+    <string name="action_text_update_customers">Actualizar Cliente</string>
+    <string name="action_text_delete_customers">Eliminar Cliente</string>
+    <string name="action_text_search_customer_by_id">Buscar cliente por ID</string>
+    <string name="action_text_view_customer_file_xml">Visualizar Fichero XML</string>
 </resources>

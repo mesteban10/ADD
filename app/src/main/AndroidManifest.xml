@@ -12,13 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AADPlayGround">
         <activity
-            android:name=".ut03.ex03_alerts.presentation.Ut03Ex03Activity"
-            android:exported="true">
+            android:name=".ut02.ex04.presentation.Ut02Ex04Activity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ut03.ex03_alerts.presentation.Ut03Ex03Activity"
+            android:exported="true">
         </activity>
         <activity
             android:name=".ut03.ex02.presentation.Example02Activity"
