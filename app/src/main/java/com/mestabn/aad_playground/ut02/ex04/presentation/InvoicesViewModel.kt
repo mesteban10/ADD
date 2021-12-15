@@ -1,67 +1,59 @@
 package com.mestabn.aad_playground.ut02.ex04.presentation
 
 import android.util.Log
-import android.view.View
-import com.mestabn.aad_playground.databinding.ActivityUt02Ex04Binding
-import com.mestabn.aad_playground.ut02.ex04.domain.CustomerModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.mestabn.aad_playground.ut02.ex04.domain.InvoiceModel
-import com.mestabn.aad_playground.ut02.ex04.domain.InvoicesData
-import java.util.*
+import com.mestabn.aad_playground.ut02.ex04.domain.UseCases.invocies.GetInvoiceByIdUseCase
+import com.mestabn.aad_playground.ut02.ex04.domain.UseCases.invocies.GetInvoicesUseCase
+import com.mestabn.aad_playground.ut02.ex04.domain.UseCases.invocies.RemoveInvoiceUseCase
+import com.mestabn.aad_playground.ut02.ex04.domain.UseCases.invocies.SaveInvoiceUseCase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class InvoicesViewModel(
-    private val view: View,
-    private val invoicesData: InvoicesData
+    private val getInvoicesUseCase: GetInvoicesUseCase,
+    private val getInvoiceByIdUseCase: GetInvoiceByIdUseCase,
+    private val deleteInvoiceUseCase: RemoveInvoiceUseCase,
+    private val saveInvoiceUseCase: SaveInvoiceUseCase
 
-) {
-
-    private val binding: ActivityUt02Ex04Binding = ActivityUt02Ex04Binding.bind(view)
+) : ViewModel() {
 
 
-    fun setupView() {
-        binding.actionSaveInvoice.setOnClickListener {
-            val invoice =
-                InvoiceModel(
-                    1,
-                    Date(),
-                    CustomerModel(1, "Cliente01", "ClienteSurname01"),
-                    emptyList()
-                )
-            invoicesData.save(invoice)
+    fun saveInvoice(invoice: InvoiceModel) {
+        viewModelScope.launch(Dispatchers.IO) {
+            saveInvoiceUseCase.execute(invoice)
         }
+    }
 
-
-        binding.actionDeleteInvoice.setOnClickListener {
-            invoicesData.remove(1)
-        }
-
-        binding.actionViewInvoiceFile.setOnClickListener {
-            val invoices = invoicesData.fetch()
+    fun getInvoices() {
+        viewModelScope.launch(Dispatchers.Main) {
+            val invoices = getInvoicesUseCase.execute()
             if (invoices.isEmpty()) {
-                Log.d("InvoiceFileXml:", "File is empty")
+                Log.d("CustomerFileXml:", "File is empty")
             } else {
-                invoices.forEach { invoiceModel ->
-                    Log.d("InvoiceFileXml:", invoiceModel.toString())
+                invoices.forEach { customerModel ->
+                    Log.d("CustomerFileXml:", customerModel.toString())
                 }
 
-            }
 
-
-        }
-        binding.actionSearchByIdInvoice.setOnClickListener {
-            val invoice =
-                InvoiceModel(
-                    2,
-                    Date(),
-                    CustomerModel(1, "Cliente01", "ClienteSurname01"),
-                    emptyList()
-                )
-            if (invoice.id != 1) {
-
-                Log.d("InvoiceId1", "No existe esa factura")
-            } else {
-                invoicesData.findById(1)
-                Log.d("InvoiceId1", invoice.toString())
             }
         }
     }
+
+
+    fun getInvoice(invoiceId: Int) {
+        viewModelScope.launch(Dispatchers.Main) {
+            getInvoiceByIdUseCase.execute(invoiceId)
+        }
+
+    }
+
+    fun removeInvoice(invoiceId: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            deleteInvoiceUseCase.execute(invoiceId)
+        }
+    }
+
+
 }
