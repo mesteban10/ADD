@@ -6,10 +6,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.mestabn.aad_playground.databinding.ActivityUt03Ex03Binding
-import dagger.hilt.android.AndroidEntryPoint
 
 
-@AndroidEntryPoint
+
+
 class Ut03Ex03Activity : AppCompatActivity() {
 
     private val TAG = Ut03Ex03Activity::class.java.simpleName
